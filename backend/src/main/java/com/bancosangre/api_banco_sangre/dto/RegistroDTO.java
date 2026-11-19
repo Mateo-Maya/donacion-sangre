@@ -55,7 +55,7 @@ public class RegistroDTO {
     private String genero;
 
     @NotNull(message = "El peso es obligatorio")
-    @DecimalMin(value = "50.0", message = "El peso mínimo registrado debe ser 50.0 kg")
+    @DecimalMin(value = "50.0", message = "El peso mínimo para donar es 50 kg")
     private BigDecimal pesoKg;
 
     // ─── Ubicación y Geolocalización ──────────────────────────────────

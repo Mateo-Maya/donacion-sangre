@@ -47,3 +47,5 @@ backend/src/main/resources/application.properties
 .project
 .classpath
 .factorypath
+# Resultados de Robot Framework (report.html, log.html, capturas)
+pruebas-e2e/robot/resultados/

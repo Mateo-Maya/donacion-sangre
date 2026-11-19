@@ -598,6 +598,16 @@ export default function Registro() {
                         max="200"
                         className="w-full px-4 py-2.5 bg-[#08080f] border border-[#1e1e2e] rounded-[9px] text-[#e8e8f0] text-sm outline-none focus:border-[#dc2626] focus:ring-2 focus:ring-[#dc2626]/20 placeholder:text-[#2a2a3e]"
                       />
+                      {datos.pesoKg && parseFloat(datos.pesoKg) < 50 && (
+                        <p className="text-[0.7rem] mt-1.5 text-[#ff4d6d]">
+                          ✗ El peso mínimo para donar es 50 kg
+                        </p>
+                      )}
+                      {parseFloat(datos.pesoKg) > 200 && (
+                        <p className="text-[0.7rem] mt-1.5 text-[#ff4d6d]">
+                          ✗ El peso máximo es 200 kg
+                        </p>
+                      )}
                     </div>
                     <div className="col-span-2">
                       <label className="block text-[0.68rem] font-bold uppercase tracking-[1px] text-[#52526a] mb-1.5"
