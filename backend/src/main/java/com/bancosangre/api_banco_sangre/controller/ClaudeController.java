@@ -1,3 +1,4 @@
+
 package com.bancosangre.api_banco_sangre.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ClaudeController {
 
-    @Value("${gemini.api.key}")
+    @Value("${gemini.api.key:}")
     private String apiKey;
 
     private final RestTemplate restTemplate;
@@ -21,13 +22,17 @@ public class ClaudeController {
     @PostMapping("/chat")
     public ResponseEntity<String> chat(@RequestBody Map<String, Object> body) {
 
+        if (apiKey == null || apiKey.isBlank()) {
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .body("El servicio de inteligencia artificial no está configurado.");
+        }
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer " + apiKey);
 
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
 
-        // Endpoint compatible con formato OpenAI de Gemini
         ResponseEntity<String> response = restTemplate.exchange(
             "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
             HttpMethod.POST,
